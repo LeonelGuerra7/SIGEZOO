@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'id_rol',
     ];
 
     /**
@@ -44,5 +46,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class, 'id_rol', 'id_rol');
+    }
+
+    public function hasRole(string $rolNombre): bool
+    {
+        return $this->role?->rol_nombre === $rolNombre;
+    }
+
+    public function isAdministrador(): bool
+    {
+        return $this->hasRole(Role::ADMINISTRADOR);
+    }
+
+    public function isOperativo(): bool
+    {
+        return $this->hasRole(Role::OPERATIVO);
+    }
+
+    public function isVisitante(): bool
+    {
+        return $this->hasRole(Role::VISITANTE);
     }
 }
