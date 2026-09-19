@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Entradas\EntradaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,11 @@ Route::middleware(['auth', 'role:'.Role::ADMINISTRADOR.','.Role::OPERATIVO])->gr
 });
 
 // Módulo público de entradas y promociones (portal para visitantes).
-Route::prefix('entradas')->group(function () {
-    // Route::get('/', [EntradasController::class, 'index'])->name('entradas.index');
+Route::prefix('entradas')->name('entradas.')->group(function () {
+    Route::get('/', [EntradaController::class, 'index'])->name('index');
+    Route::get('/comprar', [EntradaController::class, 'create'])->name('comprar');
+    Route::post('/comprar', [EntradaController::class, 'store'])->name('store');
+    Route::get('/confirmacion/{id}', [EntradaController::class, 'confirmacion'])->name('confirmacion');
 });
 
 require __DIR__.'/auth.php';
