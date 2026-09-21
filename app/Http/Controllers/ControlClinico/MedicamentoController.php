@@ -25,6 +25,7 @@ class MedicamentoController extends Controller
         return view('control-clinico.medicamentos.index', [
             'medicamentos' => $medicamentos,
             'tipos' => Medicamento::TIPOS,
+            'proveedores' => $this->proveedores(),
         ]);
     }
 
