@@ -4,6 +4,7 @@ use App\Http\Controllers\Entradas\EntradaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControlClinico\MedicamentoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,11 @@ Route::prefix('entradas')->name('entradas.')->group(function () {
     Route::get('/comprar', [EntradaController::class, 'create'])->name('comprar');
     Route::post('/comprar', [EntradaController::class, 'store'])->name('store');
     Route::get('/confirmacion/{id}', [EntradaController::class, 'confirmacion'])->name('confirmacion');
+});
+
+Route::prefix('control-clinico')->name('control-clinico.')->group(function () {
+    Route::resource('medicamentos', MedicamentoController::class)->except(['show']);
+    // Aquí irá también el resource de procedimientos clínicos
 });
 
 require __DIR__.'/auth.php';
