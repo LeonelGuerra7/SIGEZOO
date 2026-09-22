@@ -62,15 +62,26 @@ Funcionalidades:
 - Un medicamento en uso no se puede eliminar.
 - Sistema general, sin sobreingeniería, para que todo el equipo pueda extenderlo.
 
+### Sprint 2
+Wireframes de las pantallas principales
+
+Como parte de la fase de diseño de interfaz, se elaboraron wireframes de baja fidelidad para las pantallas principales del sistema. El objetivo de estos bocetos es representar la estructura y organización de cada pantalla antes de su implementación, sin definir aún el estilo visual final (colores, tipografía, imágenes), de modo que el equipo pueda validar la disposición de los elementos y el flujo de navegación.
+
+Se definieron las siguientes pantallas:
+
+Login: acceso al sistema mediante correo y contraseña, punto de entrada común para los tres tipos de usuario (administrador, operativo, visitante).
+Portal público (Entradas y promociones): vista de bienvenida para visitantes, con un banner principal y tarjetas de promociones o información destacada.
+Limpieza: listado de tareas de limpieza por área, con filtros y acciones de edición.
+Alimentación: listado de horarios y dietas, con indicador de alerta cuando el inventario de un alimento está bajo.
+Control clínico — Medicamentos, vacunas y vitaminas: listado con búsqueda y filtro por tipo, acciones de crear, editar y eliminar, e indicador visual cuando el stock está por debajo del mínimo.
+Control clínico — Procedimientos por animal: listado de procedimientos aplicados junto a un formulario para registrar uno nuevo, con selección de animal, medicamento y fechas de aplicación y próxima dosis.
+Dashboard con alertas: panel de resumen con avisos de vacunas próximas a vencer y un reporte del estado clínico de los animales.
+
+Cada pantalla mantiene una estructura común (barra de navegación superior, área de contenido y acciones visibles), lo que facilita que el usuario reconozca el mismo patrón de uso en los distintos módulos del sistema.
+
 ---
 
 ## Pendiente
-
-### SCRUM-18 (en curso)
-- CRUD de procedimientos clínicos (aplicación por animal)
-
-### Sprint 2
-- Wireframes de las pantallas principales
 
 ### Sprint 3
 - Alerta automática de vacunas próximas a vencer
