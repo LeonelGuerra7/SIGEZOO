@@ -13,6 +13,8 @@ class Medicamento extends Model
 
     // Misma lista del enum de la migración; se reutiliza en validaciones y en el <select>
     public const TIPOS = ['medicamento', 'vacuna', 'vitamina'];
+    public const TIPO_VACUNA = 'vacuna';
+    public const TIPO_MEDICAMENTO = 'medicamento';
 
     protected $table = 'medicamentos';
     protected $primaryKey = 'id_medicamento';
