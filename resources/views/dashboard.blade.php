@@ -11,9 +11,6 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
-                    <p class="mt-2 text-sm text-gray-600">
-                        Rol actual: <span class="font-semibold">{{ auth()->user()->role?->rol_nombre }}</span>
-                    </p>
                 </div>
             </div>
         </div>

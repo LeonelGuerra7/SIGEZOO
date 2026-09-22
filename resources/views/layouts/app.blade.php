@@ -51,15 +51,5 @@
                 <div class="mb-4 rounded-md bg-red-100 p-4 text-sm text-red-800">{{ session('error') }}</div>
             @endif
         </div>
-
-        {{ $slot }}
-    </main>
-
-    <footer class="bg-dark text-white-50 text-center py-3 mt-auto">
-        <small>SIGEZOO &copy; {{ date('Y') }} · Análisis de Sistemas II · UMG</small>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    @stack('scripts')
-</body>
+    </body>
 </html>

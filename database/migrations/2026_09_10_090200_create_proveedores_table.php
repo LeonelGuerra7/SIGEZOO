@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id('id_proveedores');
             $table->string('nombre_proveedor', 50);
             $table->integer('numero_proveedor');
-            $table->string('email_proveedor', 30);
+            $table->string('email_proveedor', 100);
             $table->timestamps();
         });
     }
