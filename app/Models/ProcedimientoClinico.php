@@ -42,4 +42,29 @@ class ProcedimientoClinico extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
+
+    public const DIAS_ALERTA_VACUNA_DEFAULT = 30;
+    public const DIAS_ALERTA_VACUNA_MINIMO = 10;
+
+    // Centraliza la regla del mínimo, para que nadie la pueda saltar pasando un número menor
+    public static function diasAlertaVacuna(?int $dias = null): int
+    {
+        return max($dias ?? self::DIAS_ALERTA_VACUNA_DEFAULT, self::DIAS_ALERTA_VACUNA_MINIMO);
+    }
+
+    public function scopeVacunasPorVencer($query, ?int $dias = null)
+    {
+        $dias = self::diasAlertaVacuna($dias);
+
+        return $query->whereHas('medicamento', fn ($m) => $m->where('tipo_medicamento', Medicamento::TIPO_VACUNA))
+            ->whereNotNull('fecha_proxima')
+            ->whereBetween('fecha_proxima', [now()->toDateString(), now()->addDays($dias)->toDateString()]);
+    }
+
+    public function scopeVacunasVencidas($query)
+    {
+        return $query->whereHas('medicamento', fn ($m) => $m->where('tipo_medicamento', Medicamento::TIPO_VACUNA))
+            ->whereNotNull('fecha_proxima')
+            ->where('fecha_proxima', '<', now()->toDateString());
+    }
 }

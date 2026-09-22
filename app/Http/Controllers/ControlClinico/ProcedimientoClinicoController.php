@@ -11,24 +11,25 @@ use Illuminate\Http\Request;
 class ProcedimientoClinicoController extends Controller
 {
     public function index(Request $request)
-    {
-        $procedimientos = ProcedimientoClinico::with(['animal', 'medicamento', 'usuario'])
-            ->when($request->filled('animal'), fn ($q) =>
-                $q->where('id_animal', $request->animal))
-            ->when($request->filled('tipo'), fn ($q) =>
-                $q->whereHas('medicamento', fn ($m) => $m->where('tipo_medicamento', $request->tipo)))
-            ->orderByDesc('fecha_aplicacion')
-            ->paginate(10)
-            ->withQueryString();
+{
+    $procedimientos = ProcedimientoClinico::with(['animal', 'medicamento', 'usuario'])
+        ->when($request->filled('animal'), fn ($q) => $q->where('id_animal', $request->animal))
+        ->when($request->filled('tipo'), fn ($q) =>
+            $q->whereHas('medicamento', fn ($m) => $m->where('tipo_medicamento', $request->tipo)))
+        ->when($request->estado === 'por_vencer', fn ($q) => $q->vacunasPorVencer())
+        ->when($request->estado === 'vencidas', fn ($q) => $q->vacunasVencidas())
+        ->orderByDesc('fecha_aplicacion')
+        ->paginate(10)
+        ->withQueryString();
 
-        return view('control-clinico.procedimientos.index', [
-            'procedimientos' => $procedimientos,
-            'animales'       => Animal::orderBy('nombre_animal')->get(),
-            'medicamentos'   => Medicamento::orderBy('nombre_medicamento')->get(),
-            'tipos'          => Medicamento::TIPOS,
-        ]);
-    }
-
+    return view('control-clinico.procedimientos.index', [
+        'procedimientos' => $procedimientos,
+        'animales'       => Animal::orderBy('nombre_animal')->get(),
+        'medicamentos'   => Medicamento::orderBy('nombre_medicamento')->get(),
+        'tipos'          => Medicamento::TIPOS,
+        'estado'         => $request->estado,
+    ]);
+}
     public function store(Request $request)
     {
         $datos = $this->validar($request);
