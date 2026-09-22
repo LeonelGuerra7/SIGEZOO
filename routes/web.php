@@ -38,11 +38,8 @@ Route::prefix('entradas')->name('entradas.')->group(function () {
 });
 
 Route::prefix('control-clinico')->name('control-clinico.')->group(function () {
-    Route::resource('medicamentos', MedicamentoController::class)->except(['show']);
-    // Aquí irá también el resource de procedimientos clínicos
+    Route::resource('medicamentos', MedicamentoController::class)->except(['show', 'create', 'edit']);
+    Route::resource('procedimientos', ProcedimientoClinicoController::class)->except(['show', 'create', 'edit']);
 });
-
-Route::resource('procedimientos', ProcedimientoClinicoController::class)
-    ->except(['show', 'create', 'edit']);
 
 require __DIR__.'/auth.php';

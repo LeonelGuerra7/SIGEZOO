@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'SIGEZOO') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     @stack('styles')
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
