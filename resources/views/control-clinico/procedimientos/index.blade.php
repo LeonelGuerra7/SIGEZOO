@@ -21,6 +21,21 @@
 
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
 
+                <div class="flex gap-2 mb-4 text-sm">
+                    <a href="{{ route('control-clinico.procedimientos.index') }}"
+                        class="px-3 py-1 rounded-full border {{ !$estado ? 'bg-gray-800 text-white' : 'border-gray-300 text-gray-600' }}">
+                         Todos
+                    </a>
+                    <a href="{{ route('control-clinico.procedimientos.index', ['estado' => 'por_vencer']) }}"
+                        class="px-3 py-1 rounded-full border {{ $estado === 'por_vencer' ? 'bg-amber-600 text-white' : 'border-amber-300 text-amber-700' }}">
+                         Por vencer
+                    </a>
+                    <a href="{{ route('control-clinico.procedimientos.index', ['estado' => 'vencidas']) }}"
+                        class="px-3 py-1 rounded-full border {{ $estado === 'vencidas' ? 'bg-red-600 text-white' : 'border-red-300 text-red-700' }}">
+                         Vencidas
+                    </a>
+                </div>
+
                 <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
                     <form method="GET" class="flex flex-col sm:flex-row gap-3">
                         <select name="animal" class="border-gray-300 rounded-md shadow-sm text-sm">
