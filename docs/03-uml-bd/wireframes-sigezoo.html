@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIGEZOO — Wireframes</title>
+<style>
+    :root{
+        --line:#1f2933;
+        --line-soft:#8a94a6;
+        --bg-page:#e7e9ec;
+        --bg-window:#ffffff;
+        --bar:#1f2933;
+        --bar-soft:#c3c9d1;
+    }
+    *{box-sizing:border-box;}
+    body{
+        margin:0;
+        background:var(--bg-page);
+        font-family:'Segoe UI', Arial, sans-serif;
+        color:var(--line);
+        padding:32px 16px 80px;
+    }
+    h1{
+        text-align:center;
+        font-size:22px;
+        letter-spacing:.02em;
+        margin:0 0 4px;
+    }
+    p.sub{
+        text-align:center;
+        color:var(--line-soft);
+        margin:0 0 36px;
+        font-size:14px;
+    }
+    .screen{
+        max-width:960px;
+        margin:0 auto 56px;
+    }
+    .screen-label{
+        font-size:13px;
+        font-weight:600;
+        color:var(--line);
+        margin-bottom:8px;
+        display:flex;
+        align-items:center;
+        gap:8px;
+    }
+    .screen-label .rol{
+        font-weight:400;
+        color:var(--line-soft);
+        font-size:12px;
+    }
+    .window{
+        background:var(--bg-window);
+        border:1px solid var(--line);
+        border-radius:6px;
+        overflow:hidden;
+    }
+    .chrome{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:8px 14px;
+        border-bottom:1px solid var(--line);
+    }
+    .dots{display:flex;gap:6px;}
+    .dots span{
+        width:8px;height:8px;border-radius:50%;
+        border:1px solid var(--line);
+    }
+    .dots span.filled{background:var(--line);}
+    .chrome .x{font-size:13px;color:var(--line-soft);}
+
+    .navbar{
+        display:flex;
+        align-items:center;
+        gap:16px;
+        padding:14px 20px;
+        border-bottom:1px solid var(--line);
+    }
+    .brand-box{
+        width:34px;height:34px;flex:none;
+        position:relative;
+        border:1px solid var(--line);
+    }
+    .brand-box::before,.brand-box::after{
+        content:"";position:absolute;inset:0;
+        background:
+            linear-gradient(to bottom right, transparent 49.3%, var(--line) 49.3%, var(--line) 50.7%, transparent 50.7%),
+            linear-gradient(to top right, transparent 49.3%, var(--line) 49.3%, var(--line) 50.7%, transparent 50.7%);
+    }
+    .nav-links{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap;}
+    .bar{
+        height:9px;background:var(--bar-soft);border-radius:2px;
+    }
+    .bar.dark{background:var(--bar);}
+    .nav-links .bar{width:64px;}
+    .search-dot{
+        width:16px;height:16px;border:1.5px solid var(--line);border-radius:50%;
+        position:relative;flex:none;
+    }
+    .search-dot::after{
+        content:"";position:absolute;width:6px;height:1.5px;background:var(--line);
+        transform:rotate(45deg);right:-5px;bottom:1px;
+    }
+
+    .xbox{
+        border:1px solid var(--line);
+        position:relative;
+        background:repeating-linear-gradient(135deg, transparent, transparent 100%);
+    }
+    .xbox::before,.xbox::after{
+        content:"";position:absolute;inset:0;
+    }
+    .xbox::before{background:linear-gradient(to top right, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px));}
+    .xbox::after{background:linear-gradient(to bottom right, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px));}
+
+    .content{padding:20px;}
+
+    .lines{display:flex;flex-direction:column;gap:8px;}
+    .lines .bar{width:100%;}
+    .lines .bar:last-child{width:70%;}
+
+    .btn-outline{
+        display:inline-block;border:1px solid var(--line);border-radius:3px;
+        padding:6px 16px;font-size:11px;color:var(--line);
+    }
+    .btn-solid{
+        display:inline-block;background:var(--line);color:#fff;border-radius:3px;
+        padding:6px 16px;font-size:11px;
+    }
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+
+    .table-mock{border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+    .table-mock .row{
+        display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;
+        align-items:center;padding:10px 14px;gap:10px;
+    }
+    .table-mock .row.head{background:#f2f3f5;border-bottom:1px solid var(--line);}
+    .table-mock .row:not(.head){border-bottom:1px solid #d6dae0;}
+    .table-mock .row:last-child{border-bottom:none;}
+    .table-mock .bar{height:7px;}
+    .pill{
+        display:inline-block;border:1px solid var(--line);border-radius:12px;
+        padding:2px 10px;font-size:10px;
+    }
+    .row-actions{display:flex;gap:6px;justify-content:flex-end;}
+    .row-actions .btn-outline{padding:3px 10px;font-size:10px;}
+
+    .toolbar{
+        display:flex;justify-content:space-between;align-items:center;
+        flex-wrap:wrap;gap:10px;margin-bottom:16px;
+    }
+    .filters{display:flex;gap:8px;flex-wrap:wrap;}
+    .filters .field{
+        border:1px solid var(--line);border-radius:3px;padding:6px 10px;
+        font-size:11px;color:var(--line-soft);min-width:110px;
+    }
+
+    .form-panel{
+        border:1px solid var(--line);border-radius:6px;padding:18px;
+        max-width:420px;margin:0 auto;
+        background:#fbfbfc;
+    }
+    .form-panel .field-label{font-size:10px;color:var(--line-soft);margin-bottom:4px;}
+    .field-box{
+        border:1px solid var(--line);border-radius:3px;height:28px;margin-bottom:14px;
+    }
+    .field-box.select::after{content:"▾";display:block;text-align:right;padding:5px 8px;font-size:10px;color:var(--line-soft);}
+
+    .badge-alert{
+        border:1px solid var(--line);border-radius:4px;
+        padding:10px 14px;display:flex;align-items:center;gap:10px;
+        margin-bottom:10px;
+    }
+    .badge-alert .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none;}
+
+    .footer-note{
+        text-align:center;color:var(--line-soft);font-size:11px;margin-top:60px;
+    }
+</style>
+</head>
+<body>
+
+<h1>SIGEZOO — Wireframes de baja fidelidad</h1>
+<p class="sub">Rol 5 · Análisis de Sistemas II · UMG — solo estructura, sin estilos finales</p>
+
+<!-- 1. LOGIN -->
+<div class="screen">
+    <div class="screen-label">1. Login <span class="rol">— Rol 2</span></div>
+    <div class="window">
+        <div class="chrome">
+            <div class="dots"><span class="filled"></span><span></span><span></span></div>
+            <div class="x">×</div>
+        </div>
+        <div class="content" style="display:flex;justify-content:center;padding:48px 20px;">
+            <div class="form-panel">
+                <div class="brand-box" style="margin:0 auto 18px;"></div>
+                <div class="field-label">Correo electrónico</div>
+                <div class="field-box"></div>
+                <div class="field-label">Contraseña</div>
+                <div class="field-box"></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+                    <span class="bar" style="width:90px;"></span>
+                    <span class="btn-solid">Entrar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2. PORTAL PUBLICO -->
+<div class="screen">
+    <div class="screen-label">2. Portal público — Entradas y promociones <span class="rol">— Rol 1</span></div>
+    <div class="window">
+        <div class="chrome">
+            <div class="dots"><span class="filled"></span><span></span><span></span></div>
+            <div class="x">×</div>
+        </div>
+        <div class="navbar">
+            <div class="brand-box"></div>
+            <div class="nav-links">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="search-dot"></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="xbox" style="height:220px;margin-bottom:16px;"></div>
+            <div class="grid-3">
+                <div>
+                    <div class="xbox" style="height:110px;margin-bottom:8px;"></div>
+                    <div class="lines"><div class="bar dark" style="width:60%;"></div><div class="bar"></div></div>
+                </div>
+                <div>
+                    <div class="xbox" style="height:110px;margin-bottom:8px;"></div>
+                    <div class="lines"><div class="bar dark" style="width:60%;"></div><div class="bar"></div></div>
+                </div>
+                <div>
+                    <div class="xbox" style="height:110px;margin-bottom:8px;"></div>
+                    <div class="lines"><div class="bar dark" style="width:60%;"></div><div class="bar"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 3. LIMPIEZA (placeholder para Rol 4) -->
+<div class="screen">
+    <div class="screen-label">3. Limpieza — listado de tareas por área <span class="rol">— Rol 4, boceto base</span></div>
+    <div class="window">
+        <div class="chrome">
+            <div class="dots"><span class="filled"></span><span></span><span></span></div>
+            <div class="x">×</div>
+        </div>
+        <div class="navbar">
+            <div class="brand-box"></div>
+            <div class="nav-links"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="content">
+            <div class="toolbar">
+                <div class="filters"><div class="field">Área</div><div class="field">Estado</div></div>
+                <span class="btn-solid">+ Nuevo</span>
+            </div>
+            <div class="table-mock">
+                <div class="row head"><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div></div>
+                <div class="row"><div class="bar"></div><div class="bar"></div><div class="pill">Estado</div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span></div></div>
+                <div class="row"><div class="bar"></div><div class="bar"></div><div class="pill">Estado</div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 4. ALIMENTACION (placeholder para Rol 4) -->
+<div class="screen">
+    <div class="screen-label">4. Alimentación — horarios, dietas e inventario <span class="rol">— Rol 4, boceto base</span></div>
+    <div class="window">
+        <div class="chrome">
+            <div class="dots"><span class="filled"></span><span></span><span></span></div>
+            <div class="x">×</div>
+        </div>
+        <div class="navbar">
+            <div class="brand-box"></div>
+            <div class="nav-links"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="content">
+            <div class="badge-alert"><div class="dot"></div><div class="bar" style="width:220px;"></div></div>
+            <div class="table-mock">
+                <div class="row head"><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div></div>
+                <div class="row"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 5. CONTROL CLINICO - MEDICAMENTOS -->
+<div class="screen">
+    <div class="screen-label">5. Control clínico — Medicamentos, vacunas y vitaminas <span class="rol">— Rol 5</span></div>
+    <div class="window">
+        <div class="chrome">
+            <div class="dots"><span class="filled"></span><span></span><span></span></div>
+            <div class="x">×</div>
+        </div>
+        <div class="navbar">
+            <div class="brand-box"></div>
+            <div class="nav-links"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar" style="background:var(--line);"></div></div>
+        </div>
+        <div class="content">
+            <div class="toolbar">
+                <div class="filters">
+                    <div class="field">Buscar por nombre</div>
+                    <div class="field">Tipo ▾</div>
+                    <span class="btn-outline">Filtrar</span>
+                </div>
+                <span class="btn-solid">+ Nuevo registro</span>
+            </div>
+            <div class="table-mock">
+                <div class="row head"><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div></div>
+                <div class="row"><div class="bar"></div><div class="pill">Vacuna</div><div class="bar"></div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span><span class="btn-outline">Eliminar</span></div></div>
+                <div class="row"><div class="bar"></div><div class="pill">Vitamina</div><div class="bar"></div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span><span class="btn-outline">Eliminar</span></div></div>
+                <div class="row"><div class="bar"></div><div class="pill">Medicamento</div><div class="bar" style="background:#c0392b;"></div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span><span class="btn-outline">Eliminar</span></div></div>
+            </div>
+        </div>
+    </div>
+    <p style="text-align:center;color:var(--line-soft);font-size:11px;margin-top:8px;">
+        La barra roja en "stock" indica el aviso visual de stock por debajo del mínimo · Crear/editar ocurre en un modal, no en pantallas separadas
+    </p>
+</div>
+
+<!-- 6. CONTROL CLINICO - PROCEDIMIENTOS -->
+<div class="screen">
+    <div class="screen-label">6. Control clínico — Procedimientos por animal <span class="rol">— Rol 5</span></div>
+    <div class="window">
+        <div class="chrome">
+            <div class="dots"><span class="filled"></span><span></span><span></span></div>
+            <div class="x">×</div>
+        </div>
+        <div class="navbar">
+            <div class="brand-box"></div>
+            <div class="nav-links"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar" style="background:var(--line);"></div></div>
+        </div>
+        <div class="content">
+            <div class="toolbar">
+                <div class="filters">
+                    <div class="field">Animal ▾</div>
+                    <div class="field">Tipo ▾</div>
+                </div>
+                <span class="btn-solid">+ Nuevo registro</span>
+            </div>
+            <div class="grid-2">
+                <div class="table-mock">
+                    <div class="row head" style="grid-template-columns:1.5fr 1.5fr 1fr;"><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div></div>
+                    <div class="row" style="grid-template-columns:1.5fr 1.5fr 1fr;"><div class="bar"></div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span></div></div>
+                    <div class="row" style="grid-template-columns:1.5fr 1.5fr 1fr;"><div class="bar"></div><div class="bar"></div><div class="row-actions"><span class="btn-outline">Editar</span></div></div>
+                </div>
+                <div class="form-panel" style="max-width:none;">
+                    <div class="field-label">Animal</div>
+                    <div class="field-box select"></div>
+                    <div class="field-label">Medicamento / vacuna / vitamina</div>
+                    <div class="field-box select"></div>
+                    <div class="grid-2">
+                        <div>
+                            <div class="field-label">Fecha de aplicación</div>
+                            <div class="field-box"></div>
+                        </div>
+                        <div>
+                            <div class="field-label">Próxima fecha</div>
+                            <div class="field-box"></div>
+                        </div>
+                    </div>
+                    <div style="text-align:right;"><span class="btn-solid">Guardar</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 7. ALERTA VACUNAS + REPORTE CLINICO -->
+<div class="screen">
+    <div class="screen-label">7. Dashboard — alertas de vacunas y reporte de estado clínico <span class="rol">— Rol 5</span></div>
+    <div class="window">
+        <div class="chrome">
+            <div class="dots"><span class="filled"></span><span></span><span></span></div>
+            <div class="x">×</div>
+        </div>
+        <div class="navbar">
+            <div class="brand-box"></div>
+            <div class="nav-links"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        </div>
+        <div class="content">
+            <div class="badge-alert"><div class="dot"></div><div class="bar" style="width:260px;"></div></div>
+            <div class="badge-alert"><div class="dot"></div><div class="bar" style="width:200px;"></div></div>
+            <div class="grid-2" style="margin-top:16px;">
+                <div>
+                    <div class="lines" style="margin-bottom:10px;"><div class="bar dark" style="width:40%;"></div></div>
+                    <div class="table-mock">
+                        <div class="row head" style="grid-template-columns:2fr 1fr 1fr;"><div class="bar dark"></div><div class="bar dark"></div><div class="bar dark"></div></div>
+                        <div class="row" style="grid-template-columns:2fr 1fr 1fr;"><div class="bar"></div><div class="pill">Vigente</div><div class="bar"></div></div>
+                        <div class="row" style="grid-template-columns:2fr 1fr 1fr;"><div class="bar"></div><div class="pill">Por vencer</div><div class="bar"></div></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="lines" style="margin-bottom:10px;"><div class="bar dark" style="width:50%;"></div></div>
+                    <div class="xbox" style="height:140px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="footer-note">SIGEZOO · docs/03-uml-bd · wireframes.html generado para revisión de equipo</p>
+
+</body>
+</html>
