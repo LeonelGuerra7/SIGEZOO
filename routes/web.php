@@ -9,6 +9,7 @@ use App\Http\Controllers\ControlClinico\MedicamentoController;
 use App\Http\Controllers\ControlClinico\ProcedimientoClinicoController;
 use App\Http\Controllers\Limpieza\TareaLimpiezaController;
 use App\Http\Controllers\Alimentacion\DietaController;
+use App\Http\Controllers\Alimentacion\RegistroAlimentacionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +35,8 @@ Route::middleware(['auth', 'role:'.Role::ADMINISTRADOR.','.Role::OPERATIVO])->gr
             ->only(['index', 'store', 'update', 'destroy']);
         Route::resource('dietas', DietaController::class)
             ->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('registros', RegistroAlimentacionController::class)
+            ->only(['index', 'store', 'destroy']);
     });
     // Route::resource('control-clinico', ControlClinicoController::class);
 });
