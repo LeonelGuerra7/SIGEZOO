@@ -20,6 +20,14 @@
                 <div class="mb-4 rounded-md bg-red-100 p-4 text-sm text-red-800">{{ session('error') }}</div>
             @endif
 
+            @php $stockBajoCount = $alimentos->filter(fn ($a) => $a->stockBajo())->count(); @endphp
+            @if ($stockBajoCount > 0)
+                <div class="mb-4 rounded-md bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+                    ⚠ Tienes <strong>{{ $stockBajoCount }}</strong>
+                    {{ $stockBajoCount === 1 ? 'alimento' : 'alimentos' }} con stock por debajo del mínimo.
+                </div>
+            @endif
+
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
 
                 {{-- Filtros + botón nuevo --}}
