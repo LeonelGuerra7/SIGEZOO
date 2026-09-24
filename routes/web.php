@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Alimentacion\AlimentoController;
 use App\Http\Controllers\Entradas\EntradaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Role;
@@ -27,7 +28,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:'.Role::ADMINISTRADOR.','.Role::OPERATIVO])->group(function () {
     Route::resource('limpieza', TareaLimpiezaController::class)
         ->only(['index', 'store', 'update', 'destroy']);
-    // Route::resource('alimentacion', AlimentacionController::class);
+    Route::prefix('alimentacion')->name('alimentacion.')->group(function () {
+        Route::resource('alimentos', AlimentoController::class)
+            ->only(['index', 'store', 'update', 'destroy']);
+    });
     // Route::resource('control-clinico', ControlClinicoController::class);
 });
 
