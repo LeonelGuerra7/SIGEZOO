@@ -24,6 +24,15 @@
                     <x-nav-link :href="route('alimentacion.dietas.index')" :active="request()->routeIs('alimentacion.dietas.*')">
                         {{ __('Dietas') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('alimentacion.registros.index')" :active="request()->routeIs('alimentacion.registros.*')">
+                        {{ __('Registros') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('reportes.limpieza')" :active="request()->routeIs('reportes.limpieza')">
+                        {{ __('Rep. Limpieza') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('reportes.consumo-alimentos')" :active="request()->routeIs('reportes.consumo-alimentos')">
+                        {{ __('Rep. Consumo') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('control-clinico.medicamentos.index')" :active="request()->routeIs('control-clinico.medicamentos.*')">
                         {{ __('Medicamentos') }}
                 </x-nav-link>
@@ -93,6 +102,15 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('alimentacion.dietas.index')" :active="request()->routeIs('alimentacion.dietas.*')">
                 {{ __('Dietas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('alimentacion.registros.index')" :active="request()->routeIs('alimentacion.registros.*')">
+                {{ __('Registros') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('reportes.limpieza')" :active="request()->routeIs('reportes.limpieza')">
+                {{ __('Rep. Limpieza') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('reportes.consumo-alimentos')" :active="request()->routeIs('reportes.consumo-alimentos')">
+                {{ __('Rep. Consumo') }}
             </x-responsive-nav-link>
         </div>
 

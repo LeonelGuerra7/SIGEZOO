@@ -10,6 +10,8 @@ use App\Http\Controllers\ControlClinico\ProcedimientoClinicoController;
 use App\Http\Controllers\Limpieza\TareaLimpiezaController;
 use App\Http\Controllers\Alimentacion\DietaController;
 use App\Http\Controllers\Alimentacion\RegistroAlimentacionController;
+use App\Http\Controllers\Reportes\ReporteLimpiezaController;
+use App\Http\Controllers\Reportes\ReporteConsumoAlimentosController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +39,10 @@ Route::middleware(['auth', 'role:'.Role::ADMINISTRADOR.','.Role::OPERATIVO])->gr
             ->only(['index', 'store', 'update', 'destroy']);
         Route::resource('registros', RegistroAlimentacionController::class)
             ->only(['index', 'store', 'destroy']);
+    });
+    Route::prefix('reportes')->name('reportes.')->group(function () {
+        Route::get('/limpieza', [ReporteLimpiezaController::class, 'index'])->name('limpieza');
+        Route::get('/consumo-alimentos', [ReporteConsumoAlimentosController::class, 'index'])->name('consumo-alimentos');
     });
     // Route::resource('control-clinico', ControlClinicoController::class);
 });
