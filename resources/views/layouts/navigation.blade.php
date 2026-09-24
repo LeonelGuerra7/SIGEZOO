@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('limpieza.index')" :active="request()->routeIs('limpieza.*')">
+                        {{ __('Limpieza') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('control-clinico.medicamentos.index')" :active="request()->routeIs('control-clinico.medicamentos.*')">
                         {{ __('Medicamentos') }}
                 </x-nav-link>
@@ -75,6 +78,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('limpieza.index')" :active="request()->routeIs('limpieza.*')">
+                {{ __('Limpieza') }}
             </x-responsive-nav-link>
         </div>
 

@@ -44,12 +44,8 @@
         @endif
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-            @if (session('success'))
-                <div class="mb-4 rounded-md bg-green-100 p-4 text-sm text-green-800">{{ session('success') }}</div>
-            @endif
-            @if (session('error'))
-                <div class="mb-4 rounded-md bg-red-100 p-4 text-sm text-red-800">{{ session('error') }}</div>
-            @endif
+            {{ $slot }}
         </div>
-    </body>
+    </main>
+</body>
 </html>

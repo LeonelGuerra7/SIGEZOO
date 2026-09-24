@@ -6,6 +6,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControlClinico\MedicamentoController;
 use App\Http\Controllers\ControlClinico\ProcedimientoClinicoController;
+use App\Http\Controllers\Limpieza\TareaLimpiezaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +25,8 @@ Route::middleware('auth')->group(function () {
 // Módulos internos: solo administrador y personal operativo.
 // Cada integrante registra sus rutas de módulo dentro de este grupo.
 Route::middleware(['auth', 'role:'.Role::ADMINISTRADOR.','.Role::OPERATIVO])->group(function () {
-    // Route::resource('limpieza', LimpiezaController::class);
+    Route::resource('limpieza', TareaLimpiezaController::class)
+        ->only(['index', 'store', 'update', 'destroy']);
     // Route::resource('alimentacion', AlimentacionController::class);
     // Route::resource('control-clinico', ControlClinicoController::class);
 });
