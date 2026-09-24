@@ -29,7 +29,7 @@ class Dieta extends Model
 
     public function alimento(): BelongsTo
     {
-        return $this->belongsTo(Alimento::class, 'id_alimentos', 'id_alimentos');
+    return $this->belongsTo(Alimento::class, 'id_alimentos');
     }
 
     public function registros(): HasMany
