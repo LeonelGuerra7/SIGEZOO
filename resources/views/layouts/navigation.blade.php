@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Route::has('entradas.index'))
+                        <x-nav-link :href="route('entradas.index')" :active="request()->routeIs('entradas.*')">Entradas</x-nav-link>
+                    @endif
                     <x-nav-link :href="route('limpieza.index')" :active="request()->routeIs('limpieza.*')">
                         {{ __('Limpieza') }}
                     </x-nav-link>
@@ -39,8 +42,10 @@
                 <x-nav-link :href="route('control-clinico.procedimientos.index')" :active="request()->routeIs('control-clinico.procedimientos.*')">
                         {{ __('Procedimientos') }}
                 </x-nav-link>
+                    <x-nav-link :href="route('control-clinico.reporte')" :active="request()->routeIs('control-clinico.reporte')">
+                        {{ __('Reporte clínico') }}
+                    </x-nav-link>
                 </div>
-            </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

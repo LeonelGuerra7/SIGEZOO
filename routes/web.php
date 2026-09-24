@@ -12,9 +12,13 @@ use App\Http\Controllers\Alimentacion\DietaController;
 use App\Http\Controllers\Alimentacion\RegistroAlimentacionController;
 use App\Http\Controllers\Reportes\ReporteLimpiezaController;
 use App\Http\Controllers\Reportes\ReporteConsumoAlimentosController;
+use App\Http\Controllers\ControlClinico\ReporteClinicoController;
+use App\Models\TipoEntrada;
+use App\Models\Promocion;
 
+// Redirigir el inicio directamente al login
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -58,6 +62,7 @@ Route::prefix('entradas')->name('entradas.')->group(function () {
 Route::prefix('control-clinico')->name('control-clinico.')->group(function () {
     Route::resource('medicamentos', MedicamentoController::class)->except(['show', 'create', 'edit']);
     Route::resource('procedimientos', ProcedimientoClinicoController::class)->except(['show', 'create', 'edit']);
+    Route::get('reporte', [ReporteClinicoController::class, 'index'])->name('reporte');
 });
 
 require __DIR__.'/auth.php';

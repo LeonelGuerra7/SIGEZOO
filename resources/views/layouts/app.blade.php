@@ -9,43 +9,46 @@
 
     @stack('styles')
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
-    @include('layouts.navigation')
+<body class="font-sans antialiased">
+    <div class="min-h-screen bg-gray-100">
+        @include('layouts.navigation')
 
-    @isset($header)
-        <header class="bg-white shadow-sm">
-            <div class="container py-3">{{ $header }}</div>
-        </header>
-    @endisset
-
-    <main class="container my-4 flex-grow-1">
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @isset($header)
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-2">
+                    <div>{{ $header }}</div>
+                    @unless (request()->routeIs('dashboard'))
+                        <a href="{{ route('dashboard') }}" class="text-sm text-indigo-600 hover:underline whitespace-nowrap">
+                            ← Volver al dashboard
+                        </a>
+                    @endunless
+                </div>
+            </header>
+        @endisset
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-            {{ $slot }}
+            @if (session('success'))
+                <div class="mb-4 rounded-md bg-green-100 p-4 text-sm text-green-800">{{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div class="mb-4 rounded-md bg-red-100 p-4 text-sm text-red-800">{{ session('error') }}</div>
+            @endif
+            @if ($errors->any())
+                <div class="mb-4 rounded-md bg-red-100 p-4 text-sm text-red-800">
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
-    </main>
+
+        <main>
+            {{ $slot }}
+        </main>
+    </div>
+
+    @stack('scripts')
 </body>
 </html>
