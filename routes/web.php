@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControlClinico\MedicamentoController;
 use App\Http\Controllers\ControlClinico\ProcedimientoClinicoController;
 use App\Http\Controllers\Limpieza\TareaLimpiezaController;
+use App\Http\Controllers\Alimentacion\DietaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,8 @@ Route::middleware(['auth', 'role:'.Role::ADMINISTRADOR.','.Role::OPERATIVO])->gr
         ->only(['index', 'store', 'update', 'destroy']);
     Route::prefix('alimentacion')->name('alimentacion.')->group(function () {
         Route::resource('alimentos', AlimentoController::class)
+            ->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('dietas', DietaController::class)
             ->only(['index', 'store', 'update', 'destroy']);
     });
     // Route::resource('control-clinico', ControlClinicoController::class);

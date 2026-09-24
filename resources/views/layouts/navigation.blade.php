@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('alimentacion.alimentos.index')" :active="request()->routeIs('alimentacion.alimentos.*')">
                         {{ __('Alimentos') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('alimentacion.dietas.index')" :active="request()->routeIs('alimentacion.dietas.*')">
+                        {{ __('Dietas') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('control-clinico.medicamentos.index')" :active="request()->routeIs('control-clinico.medicamentos.*')">
                         {{ __('Medicamentos') }}
                 </x-nav-link>
@@ -87,6 +90,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('alimentacion.alimentos.index')" :active="request()->routeIs('alimentacion.alimentos.*')">
                 {{ __('Alimentos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('alimentacion.dietas.index')" :active="request()->routeIs('alimentacion.dietas.*')">
+                {{ __('Dietas') }}
             </x-responsive-nav-link>
         </div>
 
