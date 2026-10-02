@@ -72,6 +72,16 @@ class EntradaController extends Controller
             ]);
         });
 
+        // Si la petición viene desde Alpine/Fetch (AJAX)
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'message' => 'Compra exitosa',
+                'id_entradas' => $entrada->id_entradas,
+                'total' => number_format($entrada->total, 2),
+                'estado_pago' => $entrada->estado_pago
+            ], 201);
+        }
+
         return redirect()
             ->route('entradas.confirmacion', $entrada->id_entradas);
     }

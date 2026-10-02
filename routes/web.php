@@ -1,12 +1,24 @@
 <?php
 
+use App\Http\Controllers\Alimentacion\AlimentoController;
 use App\Http\Controllers\Entradas\EntradaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControlClinico\MedicamentoController;
+use App\Http\Controllers\ControlClinico\ProcedimientoClinicoController;
+use App\Http\Controllers\Limpieza\TareaLimpiezaController;
+use App\Http\Controllers\Alimentacion\DietaController;
+use App\Http\Controllers\Alimentacion\RegistroAlimentacionController;
+use App\Http\Controllers\Reportes\ReporteLimpiezaController;
+use App\Http\Controllers\Reportes\ReporteConsumoAlimentosController;
+use App\Http\Controllers\ControlClinico\ReporteClinicoController;
+use App\Models\TipoEntrada;
+use App\Models\Promocion;
 
+// Redirigir el inicio directamente al login
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -22,8 +34,20 @@ Route::middleware('auth')->group(function () {
 // Módulos internos: solo administrador y personal operativo.
 // Cada integrante registra sus rutas de módulo dentro de este grupo.
 Route::middleware(['auth', 'role:'.Role::ADMINISTRADOR.','.Role::OPERATIVO])->group(function () {
-    // Route::resource('limpieza', LimpiezaController::class);
-    // Route::resource('alimentacion', AlimentacionController::class);
+    Route::resource('limpieza', TareaLimpiezaController::class)
+        ->only(['index', 'store', 'update', 'destroy']);
+    Route::prefix('alimentacion')->name('alimentacion.')->group(function () {
+        Route::resource('alimentos', AlimentoController::class)
+            ->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('dietas', DietaController::class)
+            ->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('registros', RegistroAlimentacionController::class)
+            ->only(['index', 'store', 'destroy']);
+    });
+    Route::prefix('reportes')->name('reportes.')->group(function () {
+        Route::get('/limpieza', [ReporteLimpiezaController::class, 'index'])->name('limpieza');
+        Route::get('/consumo-alimentos', [ReporteConsumoAlimentosController::class, 'index'])->name('consumo-alimentos');
+    });
     // Route::resource('control-clinico', ControlClinicoController::class);
 });
 
@@ -33,6 +57,12 @@ Route::prefix('entradas')->name('entradas.')->group(function () {
     Route::get('/comprar', [EntradaController::class, 'create'])->name('comprar');
     Route::post('/comprar', [EntradaController::class, 'store'])->name('store');
     Route::get('/confirmacion/{id}', [EntradaController::class, 'confirmacion'])->name('confirmacion');
+});
+
+Route::prefix('control-clinico')->name('control-clinico.')->group(function () {
+    Route::resource('medicamentos', MedicamentoController::class)->except(['show', 'create', 'edit']);
+    Route::resource('procedimientos', ProcedimientoClinicoController::class)->except(['show', 'create', 'edit']);
+    Route::get('reporte', [ReporteClinicoController::class, 'index'])->name('reporte');
 });
 
 require __DIR__.'/auth.php';

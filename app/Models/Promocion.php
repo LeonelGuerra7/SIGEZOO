@@ -39,7 +39,7 @@ class Promocion extends Model
     {
         $hoy = now()->toDateString();
 
-        return $query->where('fecha_inicio', '<=', $hoy)
-                      ->where('fecha_fin', '>=', $hoy);
+        return $query->whereDate('fecha_inicio', '<=', $hoy)
+                      ->whereDate('fecha_fin', '>=', $hoy);
     }
 }

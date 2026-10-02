@@ -15,8 +15,37 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Route::has('entradas.index'))
+                        <x-nav-link :href="route('entradas.index')" :active="request()->routeIs('entradas.*')">Entradas</x-nav-link>
+                    @endif
+                    <x-nav-link :href="route('limpieza.index')" :active="request()->routeIs('limpieza.*')">
+                        {{ __('Limpieza') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('alimentacion.alimentos.index')" :active="request()->routeIs('alimentacion.alimentos.*')">
+                        {{ __('Alimentos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('alimentacion.dietas.index')" :active="request()->routeIs('alimentacion.dietas.*')">
+                        {{ __('Dietas') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('alimentacion.registros.index')" :active="request()->routeIs('alimentacion.registros.*')">
+                        {{ __('Registros') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('reportes.limpieza')" :active="request()->routeIs('reportes.limpieza')">
+                        {{ __('Rep. Limpieza') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('reportes.consumo-alimentos')" :active="request()->routeIs('reportes.consumo-alimentos')">
+                        {{ __('Rep. Consumo') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('control-clinico.medicamentos.index')" :active="request()->routeIs('control-clinico.medicamentos.*')">
+                        {{ __('Medicamentos') }}
+                </x-nav-link>
+                <x-nav-link :href="route('control-clinico.procedimientos.index')" :active="request()->routeIs('control-clinico.procedimientos.*')">
+                        {{ __('Procedimientos') }}
+                </x-nav-link>
+                    <x-nav-link :href="route('control-clinico.reporte')" :active="request()->routeIs('control-clinico.reporte')">
+                        {{ __('Reporte clínico') }}
+                    </x-nav-link>
                 </div>
-            </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -69,6 +98,24 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('limpieza.index')" :active="request()->routeIs('limpieza.*')">
+                {{ __('Limpieza') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('alimentacion.alimentos.index')" :active="request()->routeIs('alimentacion.alimentos.*')">
+                {{ __('Alimentos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('alimentacion.dietas.index')" :active="request()->routeIs('alimentacion.dietas.*')">
+                {{ __('Dietas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('alimentacion.registros.index')" :active="request()->routeIs('alimentacion.registros.*')">
+                {{ __('Registros') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('reportes.limpieza')" :active="request()->routeIs('reportes.limpieza')">
+                {{ __('Rep. Limpieza') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('reportes.consumo-alimentos')" :active="request()->routeIs('reportes.consumo-alimentos')">
+                {{ __('Rep. Consumo') }}
             </x-responsive-nav-link>
         </div>
 
