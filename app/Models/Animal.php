@@ -12,6 +12,7 @@ class Animal extends Model
     use HasFactory;
 
     public const SEXOS = ['Macho', 'Hembra'];
+    public const ESTADOS = ['Saludable', 'En tratamiento', 'Cuarentena', 'Lesionado', 'Fallecido'];
 
     protected $table = 'animales';
     protected $primaryKey = 'id_animal';
@@ -35,15 +36,13 @@ class Animal extends Model
         return $this->hasMany(ProcedimientoClinico::class, 'id_animal', 'id_animal');
     }
 
-    // TODO: confirma el nombre real del modelo del hábitat (¿Habitat?) que crea Rol 3
     public function habitat(): BelongsTo
     {
-        return $this->belongsTo(Habitat::class, 'id_areas', 'id_areas');
+        return $this->belongsTo(Habitat::class, 'id_areas');
     }
 
-    // TODO: confirma si ya existe un modelo Dieta
     public function dieta(): BelongsTo
     {
-        return $this->belongsTo(Dieta::class, 'id_dietas', 'id_dietas');
+        return $this->belongsTo(Dieta::class, 'id_dietas');
     }
 }
