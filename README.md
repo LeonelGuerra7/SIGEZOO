@@ -275,9 +275,9 @@ Los siguientes usuarios son creados mediante los seeders:
 
 | Rol | Email | Contraseña |
 |---|---|---|
-| **Administrador** | `admin@sigezoo.test` | `password` |
-| **Operativo** | `operativo@sigezoo.test` | `password` |
-| **Visitante** | `visitante@sigezoo.test` | `password` |
+| **Administrador** | `admin@miradasalvaje.test` | `password` |
+| **Operativo** | `operativo@miradasalvaje.test` | `password` |
+| **Visitante** | `visitante@miradasalvaje.test` | `password` |
 
 > Estas credenciales están destinadas exclusivamente al entorno de desarrollo y demostración del prototipo.
 
