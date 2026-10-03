@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('limpieza.index')" :active="request()->routeIs('limpieza.*')">
                         {{ __('Limpieza') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('animales.index')" :active="request()->routeIs('animales.*')">
+                        {{ __('Animales') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('alimentacion.alimentos.index')" :active="request()->routeIs('alimentacion.alimentos.*')">
                         {{ __('Alimentos') }}
                     </x-nav-link>
@@ -99,8 +102,16 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (Route::has('entradas.index'))
+                <x-responsive-nav-link :href="route('entradas.index')" :active="request()->routeIs('entradas.*')">
+                    {{ __('Entradas') }}
+                </x-responsive-nav-link>
+            @endif
             <x-responsive-nav-link :href="route('limpieza.index')" :active="request()->routeIs('limpieza.*')">
                 {{ __('Limpieza') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('animales.index')" :active="request()->routeIs('animales.*')">
+                {{ __('Animales') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('alimentacion.alimentos.index')" :active="request()->routeIs('alimentacion.alimentos.*')">
                 {{ __('Alimentos') }}
@@ -116,6 +127,15 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('reportes.consumo-alimentos')" :active="request()->routeIs('reportes.consumo-alimentos')">
                 {{ __('Rep. Consumo') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('control-clinico.medicamentos.index')" :active="request()->routeIs('control-clinico.medicamentos.*')">
+                {{ __('Medicamentos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('control-clinico.procedimientos.index')" :active="request()->routeIs('control-clinico.procedimientos.*')">
+                {{ __('Procedimientos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('control-clinico.reporte')" :active="request()->routeIs('control-clinico.reporte')">
+                {{ __('Reporte clínico') }}
             </x-responsive-nav-link>
         </div>
 
